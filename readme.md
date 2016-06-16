@@ -1,6 +1,6 @@
 Recursion
   * Why do we care?
-    * useful for working with recursive data structures (trees [like the DOM in html], linked lists, graphs)
+    * useful for working with recursive data structures (trees, like the DOM in html, linked lists, graphs)
     * useful for exploring all options when there are a LOT of options (e.g. generating all permutations of a string, finding a path through a maze)
     * useful for interviews
       * good tool for problem solving/algorithmic thinking
@@ -11,7 +11,6 @@ Recursion
           * if you had a magical oracle that could give you a solution to that
             smaller problem, how would you use the solution to get to a solution
             for the problem at hand?
-            * this is called the recursive "leap of faith"
       * what's the smallest problem of this type? (base case)
         * what's the solution in that case?
   * tail recursion

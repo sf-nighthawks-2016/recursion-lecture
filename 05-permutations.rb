@@ -7,36 +7,50 @@
 
 
 # print all possible permutations
-
-# Note: Sometimes you have to pass additional info down the call stack
-
-# One possible approach
-# def permutations(str, position)
-# end
+def permutations(str, position=0)
+end
 # permutations("abc", 0)
 
-require 'pry'
 # alternative approach
-def permutations(so_far, rest)
-  # binding.pry
-  if rest.empty?
-    puts so_far
+# def permutations(remaining_chars, so_far="")
+
+
+require_relative "lib"
+
+describe "permutations" do
+  it "should work for 1 char" do
+    expect{permutations("a")}.to output("a\n").to_stdout
   end
-  for i in (0 .. (rest.length-1))
-    # add the ith letter of rest to so_far
-    new_so_far = so_far + rest[i]
-    # remove the ith letter of rest
-    temp_rest = rest.dup
-    temp_rest[i] = ""
-    # call ourselves on the new versions
-    permutations(new_so_far, temp_rest)
+
+  it "should give all permutations of b" do
+    expect{permutations("ab")}.to output("ab\nba\n").to_stdout
+  end
+
+  it "should give all permutations of abc" do
+    printed = capture_stdout { permutations("abc") }
+
+    expect(printed).to satisfy do |printed|
+      printed.split("\n").sort == ["abc", "acb", "bac", "bca", "cab", "cba"]
+    end
   end
 end
-permutations("", "abc")
-# permutations("a", "bc")
-  # permutations("ab", "c")
-    # permutations("abc", "")
-  # permutations("ac", "b")
-    # permutations("acb", "")
-# permutations("b", "ac")
-# permutations("c", "ab")
+
+
+# permutations("", "abc")
+#   permutations("a", "bc")
+#     permutations("ab", "c")
+#       permutations("abc", "")
+#     permutations("ac", "b")
+#       permutations("acb", "")
+#   permutations("b", "ac")
+#     permutations("ba", "c")
+#       permutations("bac", "")
+#     permutations("bc", "a")
+#       permutations("bca", "")
+#   permutations("c", "ab")
+#     permutations("ca", "b")
+#       permutations("cab", "")
+#     permutations("cb", "a")
+#       permutations("cba", "")
+
+

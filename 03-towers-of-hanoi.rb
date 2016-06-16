@@ -17,6 +17,17 @@
 
 # The method should return the number of moves required to solve the puzzle
 def towers_of_hanoi(towers, current_level, source, destination, other)
+  # base case: zero disks, do nothing. return 0
+  return 0 if current_level == 0
+  # steps = (move current_level -1 disks from source to other)
+  steps = towers_of_hanoi(towers, current_level - 1, source, other, destination)
+  # move disk on top of source to destination, increment steps by 1
+  towers[destination] << towers[source].pop
+  steps += 1
+  # add (move current_level - 1 disks from other to destination) to steps
+  steps += towers_of_hanoi(
+    towers, current_level - 1, other, destination, source)
+  return steps
 end
 
 describe "towers_of_hanoi" do
@@ -31,5 +42,4 @@ describe "towers_of_hanoi" do
     expect(towers_of_hanoi(towers, towers[0].length, 0, 1, 2)).to eq 127
     expect(towers).to eq [[], [7, 6, 5, 4, 3, 2, 1], []]
   end
-
 end
